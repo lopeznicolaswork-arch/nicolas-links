@@ -218,6 +218,9 @@
           <button onclick="switchTab('consultoria')" id="tab-consultoria" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800/90 text-slate-300 hover:bg-slate-700">
             3. Preventa B2B, Saneamiento & ROI
           </button>
+          <button onclick="switchTab('crm')" id="tab-crm" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800/90 text-slate-300 hover:bg-slate-700">
+            4. Commercial OS (CRM B2B & FinOps)
+          </button>
         </div>
 
         <!-- PANEL 1: PHYDATA AI & MOTOR DE DATOS -->
@@ -335,6 +338,52 @@
             <p class="text-[11px] text-slate-300 mt-1">Modelado de retorno de inversión (Payback en días) en escenarios Conservador, Moderado y Óptimo para cierre con decisores y CFOs.</p>
           </div>
         </div>
+
+        <!-- PANEL 4: NODUX COMMERCIAL OS (CRM & PIPELINE) -->
+        <div id="panel-crm" class="hidden grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-400/30">
+                  PROSPECCIÓN IA & KANBAN
+                </span>
+                <span class="mono text-[11px] text-slate-400">Motor Gemini · DOC-02 Ready</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-white">Pipeline Ponderado & AutoScout B2B</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Sistema comercial de 7 etapas estructuradas para gobernar el ciclo de ventas completo: desde la extracción de leads con IA y contacto express (45s), hasta el diagnóstico técnico, envío automatizado de propuestas y cobro de anticipos (50%).
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">AutoScout B2B</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Caja Proyectada</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Valor Facial de Cartera</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Omnibox Search</span>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                  FINOPS & BUSINESS MODELING
+                </span>
+                <span class="mono text-[11px] text-slate-400">Payback & MRR</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-white">Simulador de ROI & Gestión de Stock Muerto</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Cuadro de mando para modelar ahorros directos por automatización de horas de digitación, cálculo de payback dinámico para sustentar casos de negocio ante gerencia y motor de detección de inventario inmovilizado para campañas de liquidación B2B.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Payback en Días</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Setup vs. Continuidad MRR</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Outlet B2B</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Dictamen C-Level</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -408,7 +457,7 @@
             </p>
           </div>
           <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500">
-            <span>Qiskit Aer · QUBO ($\lambda=60$)</span>
+            <span>Qiskit Aer · QUBO (λ=60)</span>
             <span class="text-indigo-600">+ Seleccionado UTP x El Comercio</span>
           </div>
         </div>
@@ -416,7 +465,7 @@
       </div>
     </section>
 
-    <!-- LIDERAZGO INSTITUCIONAL, DIVULGACIÓN CIENTÍFICA Y CONGRESOS (CORREGIDO AL 100%) -->
+    <!-- LIDERAZGO INSTITUCIONAL, DIVULGACIÓN CIENTÍFICA Y CONGRESOS -->
     <section class="ceramic-card rounded-3xl p-6 sm:p-8 space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
         <div>
@@ -503,7 +552,7 @@
       </div>
     </section>
 
-    <!-- FORMACIÓN EJECUTIVA GLOBAL & BECAS DE ÉLITE (AUDITADO Y CORREGIDO) -->
+    <!-- FORMACIÓN EJECUTIVA GLOBAL & BECAS DE ÉLITE -->
     <section class="ceramic-card rounded-3xl p-6 sm:p-8 space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
         <div>
@@ -571,7 +620,7 @@
           </p>
         </div>
 
-        <!-- NACIONES UNIDAS (UNSSC & UNFCCC - SIN ERROR DE CAMBRIDGE) -->
+        <!-- NACIONES UNIDAS (UNSSC & UNFCCC) -->
         <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2">
           <div class="flex items-center justify-between">
             <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-cyan-100 text-cyan-800 border border-cyan-200">
@@ -670,7 +719,7 @@
   <!-- SCRIPT PARA PESTAÑAS INTERACTIVAS DE NODUX -->
   <script>
     function switchTab(tabName) {
-      const tabs = ['suites', 'portafolio', 'consultoria'];
+      const tabs = ['suites', 'portafolio', 'consultoria', 'crm'];
       tabs.forEach(t => {
         const btn = document.getElementById('tab-' + t);
         const panel = document.getElementById('panel-' + t);
