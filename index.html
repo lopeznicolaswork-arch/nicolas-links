@@ -1,487 +1,691 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nicolás López Olivas — CEO & Tech Founder</title>
+  <title>Nicolás López Olivas — CEO & Founder en Nodux | Estrategia & Preventa B2B</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #F8FAFC;
+      background-color: #F1F5F9;
+      color: #0F172A;
     }
     .mono { font-family: 'JetBrains Mono', monospace; }
-    
-    /* Apple Ceramic Glass */
-    .apple-glass {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(24px) saturate(190%);
-      -webkit-backdrop-filter: blur(24px) saturate(190%);
-      border: 1px solid rgba(226, 232, 240, 0.85);
+
+    /* Patrón arquitectónico sutil estilo Stripe / Linear */
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+    }
+
+    /* Superficie Cerámica Apple Pro (Claro de alto contraste) */
+    .ceramic-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(203, 213, 225, 0.85);
       box-shadow: 
-        0 20px 40px -15px rgba(15, 23, 42, 0.05),
-        0 1px 3px rgba(15, 23, 42, 0.03),
-        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+        0 12px 32px -8px rgba(15, 23, 42, 0.06),
+        0 2px 6px -1px rgba(15, 23, 42, 0.03);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
-    .apple-glass-hover {
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .apple-glass-hover:hover {
+    .ceramic-card:hover {
       transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.96);
-      border-color: rgba(190, 205, 225, 0.9);
+      border-color: rgba(37, 99, 235, 0.4);
       box-shadow: 
-        0 28px 50px -15px rgba(37, 99, 235, 0.10),
-        0 4px 12px rgba(15, 23, 42, 0.04),
-        inset 0 1px 0 rgba(255, 255, 255, 1);
+        0 20px 40px -12px rgba(37, 99, 235, 0.12),
+        0 4px 12px -2px rgba(15, 23, 42, 0.05);
     }
 
-    .apple-glass-card {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(241, 245, 249, 0.95);
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    /* Superficie Titanio Obsidian (Contraste Ejecutivo para Hero/Empresa) */
+    .titanium-card {
+      background: linear-gradient(145deg, #0B0F19 0%, #111827 60%, #0F172A 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 
+        0 24px 48px -12px rgba(15, 23, 42, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
 
-    .ambient-glow-1 {
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(248, 250, 252, 0) 70%);
-    }
-    .ambient-glow-2 {
-      background: radial-gradient(circle, rgba(147, 51, 234, 0.06) 0%, rgba(248, 250, 252, 0) 70%);
+    /* Navbar translúcida estilo macOS */
+    .nav-glass {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(203, 213, 225, 0.8);
+      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
     }
   </style>
 </head>
-<body class="text-slate-800 min-h-screen relative overflow-x-hidden selection:bg-blue-600 selection:text-white py-10 px-4 sm:px-6 md:px-8">
+<body class="bg-grid-pattern min-h-screen py-6 sm:py-10 px-4 sm:px-6 lg:px-8 selection:bg-blue-600 selection:text-white">
 
-  <!-- Luces ambientales de fondo estilo Keynote -->
-  <div class="fixed top-0 left-1/4 w-[600px] h-[600px] ambient-glow-1 pointer-events-none -z-10"></div>
-  <div class="fixed bottom-10 right-1/4 w-[650px] h-[650px] ambient-glow-2 pointer-events-none -z-10"></div>
+  <main class="w-full max-w-6xl mx-auto space-y-6">
 
-  <main class="w-full max-w-5xl mx-auto space-y-6">
-
-    <!-- TOPBAR MACOS / IOS -->
-    <nav class="apple-glass rounded-full px-5 py-3 flex items-center justify-between sticky top-4 z-50">
+    <!-- BARRA DE NAVEGACIÓN EJECUTIVA -->
+    <nav class="nav-glass rounded-full px-4 sm:px-6 py-3 flex items-center justify-between sticky top-4 z-50">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-full bg-slate-950 text-white font-extrabold flex items-center justify-center text-xs tracking-wider shadow-md shadow-slate-900/20">
+        <div class="w-9 h-9 rounded-full bg-slate-950 text-white font-extrabold flex items-center justify-center text-xs tracking-wider shadow-md">
           NL
         </div>
-        <div class="hidden sm:block">
-          <span class="text-xs font-bold text-slate-900 tracking-tight block leading-none">Nicolás López Olivas</span>
-          <span class="text-[10px] text-slate-500 font-medium">CEO & Tech Founder · Dirección Comercial B2B</span>
+        <div>
+          <span class="text-xs sm:text-sm font-extrabold text-slate-950 tracking-tight block leading-none">Nicolás López Olivas</span>
+          <span class="text-[10px] sm:text-[11px] text-slate-500 font-semibold">CEO & Founder en Nodux · Preventa Técnica & Estrategia B2B</span>
         </div>
       </div>
 
-      <div class="flex items-center gap-2">
-        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-[11px] font-semibold">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          Directorio & Alianzas Comerciales
-        </div>
+      <div class="flex items-center gap-2.5">
+        <a href="https://nx-profiler-nine.vercel.app" target="_blank" rel="noopener noreferrer"
+           class="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all">
+          <span>🌐 Web Oficial Nodux</span>
+        </a>
+        <a href="https://www.linkedin.com/in/nicolas-johny-lópez-olivas-182a71304/" target="_blank" rel="noopener noreferrer"
+           class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-bold transition-all">
+          <span>LinkedIn</span>
+        </a>
         <a href="https://wa.me/51919620888" target="_blank" rel="noopener noreferrer" 
-           class="px-3.5 py-1.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-sm transition-all flex items-center gap-1.5">
-          <span>Contacto Directo</span>
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+           class="px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-600/25 transition-all flex items-center gap-1.5">
+          <span>Agendar Reunión</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
     </nav>
 
-    <!-- HEADER EJECUTIVO: POSTURA DE CEO & VENTAS B2B -->
-    <header class="apple-glass rounded-3xl p-8 sm:p-10 relative overflow-hidden">
-      <div class="flex flex-col md:flex-row items-center md:items-start gap-8 relative z-10 text-center md:text-left">
+    <!-- HERO SECTION: POSICIONAMIENTO DIRECTIVO & MÉTRICAS DE TRACCIÓN -->
+    <header class="ceramic-card rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         
-        <!-- Avatar Luxury Frame -->
-        <div class="relative shrink-0">
-          <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-gradient-to-tr from-slate-200 via-white to-slate-100 p-1 shadow-2xl shadow-slate-300/60 border border-white">
-            <div class="w-full h-full rounded-[22px] bg-slate-950 flex flex-col items-center justify-center text-white relative overflow-hidden group">
-              <span class="text-3xl font-extrabold tracking-tighter bg-gradient-to-r from-blue-400 via-indigo-300 to-sky-200 bg-clip-text text-transparent">NLO</span>
-              <span class="text-[9px] tracking-widest uppercase font-bold text-blue-400 mt-1">CEO & Founder</span>
-              <div class="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            </div>
-          </div>
-          <div class="absolute -bottom-2 -right-2 px-2.5 py-1 rounded-full bg-white border border-slate-200 shadow-md flex items-center gap-1 text-[10px] font-bold text-slate-800">
-            <span>🇵🇪</span> Lima, PE
-          </div>
-        </div>
-
-        <!-- Headline & Storyline Ejecutiva -->
-        <div class="space-y-3 flex-1">
-          <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            <span class="px-3 py-1 rounded-full bg-slate-900 text-white text-[11px] font-bold tracking-wide uppercase shadow-sm">
-              CEO & Tech Founder
+        <!-- Columna Izquierda: Identidad y Propuesta de Valor (8 cols) -->
+        <div class="lg:col-span-8 space-y-4 text-center lg:text-left">
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+            <span class="px-3 py-1 rounded-full bg-slate-950 text-white text-[11px] font-extrabold tracking-wider uppercase">
+              CEO & Founder · NODUX
             </span>
-            <span class="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-[11px] font-bold tracking-wide uppercase">
-              Ventas B2B & Estrategia de Crecimiento
+            <span class="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-[11px] font-extrabold tracking-wider uppercase">
+              Preventa Técnica B2B & Cierre Comercial
+            </span>
+            <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-extrabold tracking-wider uppercase">
+              Business-Tech Translator
             </span>
           </div>
 
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-950 leading-tight">
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 leading-[1.1]">
             Nicolás López Olivas
           </h1>
 
-          <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl font-normal">
-            Lidero la dirección ejecutiva y comercial de <strong class="text-slate-900 font-semibold">Nodux</strong>, estructurando el Go-to-Market, la prospección B2B y el levantamiento de procesos en el terreno. Becario 100% mérito en <strong class="text-slate-900 font-semibold">Harvard Business Publishing</strong>, Ponente Oficial <strong class="text-slate-900 font-semibold">CONEII 2027</strong>, Divulgador Científico en <strong class="text-slate-900 font-semibold">IEEE WIE</strong> y miembro del pilar de Liderazgo en <strong class="text-slate-900 font-semibold">LEAD UTP</strong>.
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            Dirijo la estrategia comercial, preventa consultiva y arquitectura de negocio en <strong class="text-slate-950 font-bold">Nodux</strong>. Especializado en diagnosticar dolores operativos en empresas B2B, estructurar casos de negocio rentables (ROI/TCO y P&L) y liderar escuadras de ingeniería (Cloud, IA y Optimización) para desplegar software en producción. Ingeniería Industrial en <strong class="text-slate-950 font-bold">UTP (7.° ciclo, Tercio Superior)</strong> y Becario 100% Mérito en <strong class="text-slate-950 font-bold">Harvard Business Publishing</strong>.
           </p>
 
-          <!-- Links de Verificación -->
-          <div class="flex flex-wrap justify-center md:justify-start gap-3 pt-3">
-            <a href="https://www.linkedin.com/in/nicolas-johny-lópez-olivas-182a71304/" target="_blank" rel="noopener noreferrer"
-               class="px-4 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold shadow-sm flex items-center gap-2 transition-all">
-              <svg class="w-4 h-4 fill-[#0A66C2]" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              <span>Verificado en LinkedIn</span>
+          <!-- Botones de Acción Ejecutiva -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+            <a href="https://nx-profiler-nine.vercel.app" target="_blank" rel="noopener noreferrer"
+               class="px-5 py-3 rounded-xl bg-slate-950 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold shadow-lg shadow-slate-950/15 flex items-center gap-2 transition-all">
+              <span>Explorar NODUX (Web Oficial)</span>
+              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             </a>
+
             <a href="https://kirorestqube.vercel.app" target="_blank" rel="noopener noreferrer"
-               class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-md shadow-blue-600/20 flex items-center gap-2 transition-all">
-              <span>🏆 Demo Kiro RestQube</span>
-              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+               class="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-lg shadow-blue-600/20 flex items-center gap-2 transition-all">
+              <span>🏆 Demo Kiro RestQube (Podio AWS)</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/nicolas-johny-lópez-olivas-182a71304/" target="_blank" rel="noopener noreferrer"
+               class="px-4 py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-xs sm:text-sm font-bold flex items-center gap-2 transition-all">
+              <svg class="w-4 h-4 fill-[#0A66C2]" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
             </a>
           </div>
         </div>
+
+        <!-- Columna Derecha: Tablero de Telemetría Ejecutiva (4 cols) -->
+        <div class="lg:col-span-4 grid grid-cols-2 gap-3">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 text-center lg:text-left">
+            <span class="mono text-2xl sm:text-3xl font-extrabold text-blue-600 block">10/10</span>
+            <span class="text-[11px] font-bold text-slate-800 uppercase tracking-tight block mt-1">1.er Puesto HP</span>
+            <span class="text-[10px] text-slate-500 block">Challenge #AIforImpact</span>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 text-center lg:text-left">
+            <span class="mono text-2xl sm:text-3xl font-extrabold text-amber-600 block">TOP 3</span>
+            <span class="text-[11px] font-bold text-slate-800 uppercase tracking-tight block mt-1">Podio Nacional</span>
+            <span class="text-[10px] text-slate-500 block">AWS & Kiro (40+ equipos)</span>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 text-center lg:text-left">
+            <span class="mono text-2xl sm:text-3xl font-extrabold text-emerald-600 block">100%</span>
+            <span class="text-[11px] font-bold text-slate-800 uppercase tracking-tight block mt-1">Beca Harvard</span>
+            <span class="text-[10px] text-slate-500 block">Business Publishing</span>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 text-center lg:text-left">
+            <span class="mono text-2xl sm:text-3xl font-extrabold text-indigo-600 block">+500K</span>
+            <span class="text-[11px] font-bold text-slate-800 uppercase tracking-tight block mt-1">Alcance Vocería</span>
+            <span class="text-[10px] text-slate-500 block">Caso de Éxito UTP</span>
+          </div>
+        </div>
+
       </div>
     </header>
 
-    <!-- BENTO GRID PRINCIPAL -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- SECCIÓN INSIGNIA EN TITANIO OSCURO: NODUX (LA EMPRESA Y SU ECOSISTEMA REAL) -->
+    <section class="titanium-card rounded-3xl p-6 sm:p-10 text-white relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-      <!-- COLUMNA 1 & 2: NODUX (EMPRESA INSIGNIA & VEHRÍCULO B2B) -->
-      <section class="md:col-span-2 apple-glass apple-glass-hover rounded-3xl p-7 flex flex-col justify-between">
-        <div class="space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-slate-200/80">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-slate-950 to-slate-800 text-white flex items-center justify-center font-black text-sm shadow-md">
-                NX
-              </div>
-              <div>
-                <h2 class="text-lg font-bold text-slate-900 tracking-tight flex items-center gap-2">
-                  NODUX
-                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200">
-                    Startup B2B · Fundador & CEO
-                  </span>
-                </h2>
-                <p class="text-xs text-slate-500">Infraestructura Transaccional, Higiene de Datos & Scoring Comercial</p>
-              </div>
-            </div>
-            <span class="mono text-xs px-2.5 py-1 rounded-full bg-emerald-100/80 text-emerald-800 font-semibold border border-emerald-200">
-              ● Operativo
-            </span>
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-800 relative z-10">
+        <div class="flex items-start sm:items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-black text-xl tracking-tighter shadow-lg shadow-blue-500/30 shrink-0">
+            NX
           </div>
-
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            Startup B2B orientada a digitalizar la cadena de suministro tradicional en Latinoamérica. Eliminamos el desorden de inventarios en papel y hojas de cálculo rotas, transformándolos en bases transaccionales saneadas, cotizaciones automatizadas y módulos de diagnóstico con IA para comercios y distribuidores.
-          </p>
-
-          <!-- MÓDULOS DE NODUX: NX PROFILER Y PHYDATA AI -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-            
-            <!-- SUB-MÓDULO 1: NX PROFILER -->
-            <a href="https://nx-profiler-nine.vercel.app" target="_blank" rel="noopener noreferrer"
-               class="apple-glass-card p-3.5 rounded-2xl block group transition-all hover:bg-white hover:border-slate-300">
-              <div class="flex justify-between items-center">
-                <span class="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">NX Profiler Suite ↗</span>
-                <span class="text-[10px] mono text-blue-600 font-semibold">Comercial / B2B</span>
-              </div>
-              <p class="text-[11px] text-slate-500 mt-1">Diagnóstico interactivo de clientes, perfilado de cuentas y scoring de fricción operativa.</p>
-            </a>
-
-            <!-- SUB-MÓDULO 2: PHYDATA AI (CREADO POR ALEXANDER) -->
-            <div class="apple-glass-card p-3.5 rounded-2xl">
-              <div class="flex justify-between items-center">
-                <span class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
-                  PhyData AI
-                </span>
-                <span class="text-[10px] mono text-indigo-600 font-semibold">Data Quality & ML</span>
-              </div>
-              <p class="text-[11px] text-slate-500 mt-1">Motor inteligente de previsualización, diagnóstico, limpieza con IA y validación de datos masivos.</p>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="mt-5 pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
-          <span>Participante del programa <strong>Aprende a Emprender</strong> (Produce)</span>
-          <span class="font-semibold text-slate-900">Infraestructura & Datos B2B</span>
-        </div>
-      </section>
-
-      <!-- COLUMNA 3: PODIO NACIONAL AWS (TARJETA VERTICAL ALTO IMPACTO) -->
-      <section class="apple-glass apple-glass-hover rounded-3xl p-7 flex flex-col justify-between border-amber-200/70 bg-gradient-to-b from-white via-white to-amber-50/30">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
-              🏆 PODIO NACIONAL
-            </span>
-            <span class="mono text-xs font-bold text-amber-600">AWS / ESAN</span>
-          </div>
-
-          <h3 class="text-lg font-bold text-slate-900 leading-snug">Kiro RestQube</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">
-            <strong>3.er Puesto a Nivel Nacional</strong> en la IAthon de Inteligencia Artificial & Cloud 2026 frente a 40 escuadras (240 competidores).
-          </p>
-
-          <div class="p-3 rounded-2xl bg-white/90 border border-amber-100 space-y-1.5 text-xs text-slate-700">
-            <p class="font-semibold text-slate-900">Resolución Combinatoria QUBO:</p>
-            <p class="text-[11px] text-slate-500">Optimización logística de alta complejidad con arquitectura Serverless e IA agéntica en Amazon Bedrock.</p>
-          </div>
-        </div>
-
-        <a href="https://kirorestqube.vercel.app" target="_blank" rel="noopener noreferrer" 
-           class="mt-4 w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold text-center block shadow-md transition-all">
-          Abrir Solución Desplegada ↗
-        </a>
-      </section>
-
-      <!-- SECCIÓN: LIDERAZGO INSTITUCIONAL & DIVULGACIÓN TÉCNICA -->
-      <section class="md:col-span-3 apple-glass rounded-3xl p-7 sm:p-8 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/80 pb-4">
           <div>
-            <span class="text-xs font-bold tracking-wider uppercase text-purple-700">Comunidad, Ciencia & Voz Directiva</span>
-            <h2 class="text-xl font-extrabold text-slate-950 mt-0.5">Liderazgo Institucional & Divulgación Técnica</h2>
-          </div>
-          <span class="text-xs text-slate-500 font-medium">Cargos Oficiales & Representación Activa</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          <!-- CARD 1: IEEE WIE -->
-          <div class="apple-glass-card apple-glass-hover p-5 rounded-2xl flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-pink-100 text-pink-700 border border-pink-200">
-                  IEEE WIE
-                </span>
-                <span class="text-[11px] text-slate-400 font-semibold">Investigación</span>
-              </div>
-              <h3 class="text-base font-bold text-slate-900">Redactor & Divulgador Científico</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Miembro del Comité de Investigación y Redacción de la revista científica oficial <strong>WIE Explora</strong> (Rama UTP).
-              </p>
-              <ul class="text-[11px] text-slate-500 space-y-1 pt-1">
-                <li>• Análisis sistémico del caso Camisea y transición energética.</li>
-                <li>• Difusión de tecnología biomédica accesible (caso AINI).</li>
-                <li>• Internacionalización científica con Purdue University.</li>
-              </ul>
+            <div class="flex flex-wrap items-center gap-2">
+              <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">NODUX</h2>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30 uppercase tracking-wider">
+                CEO & Co-Founder
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                ● En Operación
+              </span>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-pink-700">
-              <span>Revista WIE Explora</span>
-              <span>Divulgación STEM</span>
-            </div>
-          </div>
-
-          <!-- CARD 2: LEAD UTP -->
-          <div class="apple-glass-card apple-glass-hover p-5 rounded-2xl flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 text-indigo-700 border border-indigo-200">
-                  LEAD UTP
-                </span>
-                <span class="text-[11px] text-indigo-600 font-bold">Pilar Liderazgo</span>
-              </div>
-              <h3 class="text-base font-bold text-slate-900">Miembro en Liderazgo</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Desarrollo y facilitación de dinámicas ejecutivas, resolución de problemas complejos y toma de decisiones de campo bajo presión.
-              </p>
-              <ul class="text-[11px] text-slate-500 space-y-1 pt-1">
-                <li>• Bootcamps de decisión bajo estrés (formato caso Harvard).</li>
-                <li>• Estandarización de oratoria ejecutiva y defensa de pitch.</li>
-                <li>• Articulación de células interdisciplinarias de alta competencia.</li>
-              </ul>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-indigo-700">
-              <span>Liderazgo Adaptativo</span>
-              <span>Gestión de Equipos</span>
-            </div>
-          </div>
-
-          <!-- CARD 3: CONEII 2027 -->
-          <div class="apple-glass-card apple-glass-hover p-5 rounded-2xl flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-700 border border-blue-200">
-                  CONEII 2027
-                </span>
-                <span class="mono text-[11px] text-blue-600 font-bold">Tarapoto</span>
-              </div>
-              <h3 class="text-base font-bold text-slate-900">Ponente Oficial Confirmado</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Designado formalmente por la Junta Directiva para brindar una conferencia magistral sobre optimización, sistemas de información y liderazgo en el congreso nacional.
-              </p>
-              <div class="p-2 rounded-xl bg-blue-50/50 border border-blue-100 text-[11px] text-blue-900 font-medium">
-                Respaldo directo de directivos CONEII y alianzas con la directiva CINERGIA (UCSUR).
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-blue-700">
-              <span>Conferencia Magistral</span>
-              <span>2027</span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- SECCIÓN: ARSENAL DE BECAS Y CREDENCIALES GLOBALES (100% AUDITADAS) -->
-      <section class="md:col-span-3 apple-glass rounded-3xl p-7 sm:p-8 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/80 pb-4">
-          <div>
-            <span class="text-xs font-bold tracking-wider uppercase text-blue-700">Rigor Estratégico & Selectividad</span>
-            <h2 class="text-xl font-extrabold text-slate-950 mt-0.5">Becas de Excelencia & Formación Ejecutiva Global</h2>
-          </div>
-          <span class="text-xs text-slate-500 font-medium">Marcos Directivos Auditados</span>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-
-          <!-- HARVARD -->
-          <div class="apple-glass-card apple-glass-hover p-4 rounded-2xl space-y-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200">
-              BECA 100% MÉRITO
-            </span>
-            <h4 class="text-sm font-bold text-slate-900">Harvard Business Publishing</h4>
-            <p class="text-[11px] text-slate-600 leading-relaxed">
-              Programa directivo <em>Harvard Business Impact</em>. Calificación perfecta en: Customer Focus, Performance Measurement (KPIs) y Business Cases.
+            <p class="text-xs sm:text-sm text-slate-300 mt-1">
+              “Soluciones que se adaptan a ti, tecnología que transforma.” — Consultoría de Operaciones, Ingeniería de Datos, Suites con IA y Desarrollo Web B2B.
             </p>
           </div>
+        </div>
 
-          <!-- ASPIRE / HARVARD -->
-          <div class="apple-glass-card apple-glass-hover p-4 rounded-2xl space-y-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+        <a href="https://nx-profiler-nine.vercel.app" target="_blank" rel="noopener noreferrer"
+           class="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 shrink-0 transition-all">
+          <span>Abrir Portal Corporativo NODUX</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+
+      <!-- PESTAÑAS INTERACTIVAS DEL ECOSISTEMA NODUX -->
+      <div class="mt-6 relative z-10">
+        <div class="flex flex-wrap gap-2 mb-6">
+          <button onclick="switchTab('suites')" id="tab-suites" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-blue-600 text-white shadow-md">
+            1. PhyData AI & Motor de Datos
+          </button>
+          <button onclick="switchTab('portafolio')" id="tab-portafolio" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800/90 text-slate-300 hover:bg-slate-700">
+            2. Portafolio de Plataformas Desplegadas (4)
+          </button>
+          <button onclick="switchTab('consultoria')" id="tab-consultoria" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800/90 text-slate-300 hover:bg-slate-700">
+            3. Preventa B2B, Saneamiento & ROI
+          </button>
+        </div>
+
+        <!-- PANEL 1: PHYDATA AI & MOTOR DE DATOS -->
+        <div id="panel-suites" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-sky-500/20 text-sky-300 border border-sky-400/30">
+                  DATA QUALITY & ML SUITE
+                </span>
+                <span class="mono text-[11px] text-slate-400">Ingeniería de Datos</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-white">PhyData AI — Limpieza y Optimización con IA</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Plataforma inteligente desarrollada por nuestro equipo técnico para la ingesta masiva, previsualización, diagnóstico automatizado, limpieza asistida por IA, validación relacional y generación de reportes ejecutivos sobre bases de datos empresariales.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Ingesta Masiva</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Diagnóstico IA</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Estandarización SKU</span>
+              <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-slate-300 font-semibold">Validación Human-in-the-Loop</span>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30">
+                  ASISTENTE & AUTOMATIZACIÓN
+                </span>
+                <span class="mono text-[11px] text-slate-400">B2B Operations</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-white">Nodux AI & Despacho Transaccional Rápido</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Transformamos catálogos físicos y hojas de cálculo fragmentadas en infraestructuras de consulta inmediata y despacho por WhatsApp, reduciendo el tiempo de cotización en mostrador de <strong>4 minutos a 10 segundos</strong>.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400">Validado en programa <strong>Aprende a Emprender (Produce)</strong></span>
+              <a href="https://nx-profiler-nine.vercel.app" target="_blank" class="text-blue-400 font-bold hover:underline">Ver en Web ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 2: PORTAFOLIO DE PLATAFORMAS DESPLEGADAS (OCULTO POR DEFECTO) -->
+        <div id="panel-portafolio" class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-blue-400 uppercase">E-Commerce & Logística</span>
+              <h4 class="text-sm font-bold text-white mt-1">Plataforma E-Commerce Nodux</h4>
+              <p class="text-[11px] text-slate-300 mt-1">Solución integral de comercio electrónico con gestión de inventarios en tiempo real, carrito optimizado y pasarela de pagos.</p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 flex flex-wrap gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">Angular</span>
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">TypeScript</span>
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">RxJS</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-emerald-400 uppercase">Sector Educativo</span>
+              <h4 class="text-sm font-bold text-white mt-1">Nodux Educa — EdTech LMS</h4>
+              <p class="text-[11px] text-slate-300 mt-1">Plataforma educativa interactiva orientada a la gestión de cursos, alumnos y material didáctico optimizada para alto rendimiento.</p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 flex flex-wrap gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">Next.js</span>
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">React</span>
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">Tailwind</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-amber-400 uppercase">Sector Automotriz</span>
+              <h4 class="text-sm font-bold text-white mt-1">Portal Automotriz NX-7 PHEV</h4>
+              <p class="text-[11px] text-slate-300 mt-1">Landing page inmersiva con visualizador interactivo de modelos, acabados, especificaciones técnicas y cotizador dinámico multicanal.</p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 flex flex-wrap gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">JavaScript</span>
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">HTML5/CSS3</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-700/80 flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] font-bold text-purple-400 uppercase">Empresas B2B</span>
+              <h4 class="text-sm font-bold text-white mt-1">Web Corporativa Institucional</h4>
+              <p class="text-[11px] text-slate-300 mt-1">Portales corporativos de alto impacto enfocados en conversión comercial B2B, arquitectura robusta y tiempos de carga inmediatos.</p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 flex flex-wrap gap-1">
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">Angular</span>
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">SCSS</span>
+              <span class="px-1.5 py-0.5 rounded bg-slate-800 text-[9px] text-slate-300">TypeScript</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 3: PREVENTA B2B & CONSULTORÍA (OCULTO POR DEFECTO) -->
+        <div id="panel-consultoria" class="hidden grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-700/80">
+            <span class="mono text-xs font-bold text-blue-400">DOC-03 · Diagnóstico Financiero</span>
+            <h4 class="text-sm font-bold text-white mt-1">Dictamen de Costo de No-Calidad</h4>
+            <p class="text-[11px] text-slate-300 mt-1">Auditoría técnica para cuantificar el capital inmovilizado, compras dobles por duplicados y pérdida de horas-hombre en almacenes B2B.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-700/80">
+            <span class="mono text-xs font-bold text-emerald-400">DOC-09 · Higiene de Datos</span>
+            <h4 class="text-sm font-bold text-white mt-1">Base Maestra Estandarizada</h4>
+            <p class="text-[11px] text-slate-300 mt-1">Consolidación y normalización semántica de hasta 3,000 SKUs con taxonomía de familias, unidades de medida y alertas de auditoría en piso.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-700/80">
+            <span class="mono text-xs font-bold text-amber-400">Business Case & ROI</span>
+            <h4 class="text-sm font-bold text-white mt-1">Matrices de Sensibilidad para Gerencia</h4>
+            <p class="text-[11px] text-slate-300 mt-1">Modelado de retorno de inversión (Payback en días) en escenarios Conservador, Moderado y Óptimo para cierre con decisores y CFOs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PODIOS NACIONALES & COMPETICIONES TECNOLÓGICAS (3 TARJETAS DE ALTO IMPACTO) -->
+    <section class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between px-1">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-blue-600">Validación en Cancha bajo Presión</span>
+          <h2 class="text-2xl font-extrabold text-slate-950 tracking-tight">Podios Nacionales & Hackathons Tecnológicas</h2>
+        </div>
+        <span class="text-xs font-semibold text-slate-500">Arquitectura Cloud, IA & Computación Cuántica</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- PODIO 1: AWS & KIRO -->
+        <div class="ceramic-card rounded-3xl p-6 flex flex-col justify-between border-t-4 border-t-amber-500">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300">
+                🏆 3.ER PUESTO NACIONAL
+              </span>
+              <span class="mono text-xs font-bold text-slate-500">Oct 2026</span>
+            </div>
+            <h3 class="text-lg font-extrabold text-slate-950 leading-snug">IAthon AWS & Kiro — ESAN x Fundación Romero</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Podio nacional superando a <strong>40 escuadras (240 competidores)</strong>. Lideré la estrategia de producto, el caso de negocio FinOps y la defensa ante jurado C-Level de una arquitectura Serverless (AWS Lambda, DynamoDB Single-Table, Amazon Bedrock Claude 3 Haiku) y el sistema <strong>Kiro RestQube</strong>.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-500">AWS Serverless & QUBO</span>
+            <a href="https://kirorestqube.vercel.app" target="_blank" rel="noopener noreferrer"
+               class="text-xs font-extrabold text-blue-600 hover:text-blue-800 flex items-center gap-1">
+              Abrir Kiro RestQube ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- PODIO 2: HP & JA AMERICAS -->
+        <div class="ceramic-card rounded-3xl p-6 flex flex-col justify-between border-t-4 border-t-blue-600">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-blue-100 text-blue-900 border border-blue-300">
+                🥇 1.ER PUESTO (10/10)
+              </span>
+              <span class="mono text-xs font-bold text-slate-500">NauFest 2026</span>
+            </div>
+            <h3 class="text-lg font-extrabold text-slate-950 leading-snug">Challenge Internacional #AIforImpact — HP & JA Americas</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Campeón con <strong>calificación perfecta (10/10)</strong> otorgada por el jurado evaluador. Estructuré el modelo de viabilidad comercial y arquitectura de IA responsable orientada a eliminar fricciones operativas y mermas financieras en micro y pequeñas empresas.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500">
+            <span>HP Inc. & Junior Achievement</span>
+            <span class="text-emerald-600">Puntaje Perfecto</span>
+          </div>
+        </div>
+
+        <!-- PODIO 3: IBM QUANTUM -->
+        <div class="ceramic-card rounded-3xl p-6 flex flex-col justify-between border-t-4 border-t-indigo-600">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-indigo-100 text-indigo-900 border border-indigo-300">
+                ⚛️ CLASIFICADO OFICIAL
+              </span>
+              <span class="mono text-xs font-bold text-slate-500">PUCP x UTEC</span>
+            </div>
+            <h3 class="text-lg font-extrabold text-slate-950 leading-snug">IEEE / IBM Quantum Hackathon Perú</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Líder del equipo <strong>Nodux Quantum</strong>. Resolución del problema de asignación cuadrática (instancia <code>qap10.mps</code> con 4,150 variables) mediante arquitectura híbrida <strong>Q-LNS / QAOA en Qiskit Aer</strong>, logrando un <strong>27.04% de reducción de costo operativo</strong> (+2.94% gap vs. óptimo global) y proyectando ahorros de S/ 28,000 anuales por almacén.
+            </p>
+          </div>
+          <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-500">
+            <span>Qiskit Aer · QUBO ($\lambda=60$)</span>
+            <span class="text-indigo-600">+ Seleccionado UTP x El Comercio</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LIDERAZGO INSTITUCIONAL, DIVULGACIÓN CIENTÍFICA Y CONGRESOS (CORREGIDO AL 100%) -->
+    <section class="ceramic-card rounded-3xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-purple-700">Gobernanza, Ciencia & Tribuna Nacional</span>
+          <h2 class="text-2xl font-extrabold text-slate-950 mt-0.5">Liderazgo Institucional & Divulgación Científica</h2>
+        </div>
+        <span class="text-xs font-semibold text-slate-500">Representación Oficial Verificable</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- 1. IEEE WIE (REDACTOR Y DIVULGADOR CIENTÍFICO) -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-md text-[10px] font-extrabold bg-pink-100 text-pink-800 border border-pink-200">
+                IEEE WIE UTP
+              </span>
+              <span class="text-[11px] font-bold text-slate-500">Revista WIE Explora</span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-950">Redactor & Divulgador Científico</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Autor y analista técnico en el Comité de Investigación de <strong>IEEE Women in Engineering (WIE)</strong>. Redacción de artículos científicos de alto rigor conectando ingeniería, sostenibilidad e innovación:
+            </p>
+            <ul class="text-[11px] text-slate-600 space-y-1 font-medium">
+              <li>• Análisis sistémico del gas de Camisea y transición energética nacional.</li>
+              <li>• Cobertura de biotecnología accesible (proyecto AINI) y vinculación con Purdue University.</li>
+            </ul>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-bold text-pink-700">
+            <span>Investigación & Redacción STEM</span>
+            <span>Activo</span>
+          </div>
+        </div>
+
+        <!-- 2. LEAD UTP (MIEMBRO DESTACADO EN EL PILAR DE LIDERAZGO) -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-md text-[10px] font-extrabold bg-indigo-100 text-indigo-800 border border-indigo-200">
+                LEAD UTP
+              </span>
+              <span class="text-[11px] font-bold text-indigo-600">Pilar de Liderazgo</span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-950">Miembro Destacado en Liderazgo</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Referente dentro de la comunidad de liderazgo universitario <strong>LEAD UTP</strong>, trasladando metodologías de alta competencia a la formación de equipos:
+            </p>
+            <ul class="text-[11px] text-slate-600 space-y-1 font-medium">
+              <li>• Diseño de bootcamps de toma de decisiones bajo estrés y presión operativa.</li>
+              <li>• Estandarización de pitches ejecutivos, storytelling comercial y defensa ante jurados.</li>
+              <li>• Gobernanza de células multidisciplinarias para certámenes nacionales.</li>
+            </ul>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-bold text-indigo-700">
+            <span>Gobernanza & Oratoria Ejecutiva</span>
+            <span>Top Member</span>
+          </div>
+        </div>
+
+        <!-- 3. PONENTE OFICIAL CONEII 2027 -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded-md text-[10px] font-extrabold bg-blue-100 text-blue-800 border border-blue-200">
+                CONEII 2027 · TARAPOTO
+              </span>
+              <span class="mono text-[11px] font-bold text-blue-600">Speaker Oficial</span>
+            </div>
+            <h3 class="text-base font-extrabold text-slate-950">Ponente Magistral Confirmado</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Designado formalmente por la Junta Directiva para dictar una conferencia magistral en el <strong>Congreso Nacional de Estudiantes de Ingeniería Industrial (CONEII 2027)</strong> sobre arquitectura de procesos, inteligencia artificial aplicada y liderazgo en tecnología.
+            </p>
+            <p class="text-[11px] text-slate-500 font-medium">
+              Articulación interinstitucional activa con directivas nacionales y CINERGIA (UCSUR).
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-bold text-blue-700">
+            <span>Conferencia Nacional</span>
+            <span>Confirmado</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FORMACIÓN EJECUTIVA GLOBAL & BECAS DE ÉLITE (AUDITADO Y CORREGIDO) -->
+    <section class="ceramic-card rounded-3xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-blue-600">Selectividad Académica & Marcos de Consultoría</span>
+          <h2 class="text-2xl font-extrabold text-slate-950 mt-0.5">Becas Internacionales & Formación Ejecutiva</h2>
+        </div>
+        <span class="text-xs font-semibold text-slate-500">Credenciales 100% Verificables</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- HARVARD BUSINESS PUBLISHING -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-rose-100 text-rose-800 border border-rose-200">
+              BECA 100% MÉRITO · COHORT 07
+            </span>
+            <span class="mono text-[10px] font-bold text-slate-400">2026</span>
+          </div>
+          <h4 class="text-sm font-extrabold text-slate-950">Harvard Business Publishing</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Seleccionado tras 3 fases internacionales para el programa <em>Harvard Business Impact</em>. Calificación perfecta en <strong>Business Case Development (ROI/TCO), Performance Measurement (KPIs), Customer Focus y Finanzas Operativas</strong>.
+          </p>
+        </div>
+
+        <!-- ASPIRE LEADERS PROGRAM -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-200">
               ADMITIDO COHORTE 4
             </span>
-            <h4 class="text-sm font-bold text-slate-900">Aspire Leaders Program</h4>
-            <p class="text-[11px] text-slate-600 leading-relaxed">
-              Programa internacional de liderazgo fundado por profesores de Harvard Business School para talentos de alto impacto.
-            </p>
+            <span class="mono text-[10px] font-bold text-slate-400">Global</span>
           </div>
+          <h4 class="text-sm font-extrabold text-slate-950">Aspire Leaders Program (Aspire Institute)</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Programa global de liderazgo ejecutivo fundado por profesores de <strong>Harvard Business School</strong>, enfocado en transformación organizacional e impacto global.
+          </p>
+        </div>
 
-          <!-- BCG -->
-          <div class="apple-glass-card apple-glass-hover p-4 rounded-2xl space-y-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+        <!-- BOSTON CONSULTING GROUP -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-200">
               STRATEGY CONSULTING
             </span>
-            <h4 class="text-sm font-bold text-slate-900">Boston Consulting Group</h4>
-            <p class="text-[11px] text-slate-600 leading-relaxed">
-              Certificación vía Forage. Modelado financiero de P&L, análisis estratégico de mercado y gestión de stakeholders corporativos.
-            </p>
+            <span class="mono text-[10px] font-bold text-slate-400">Forage</span>
           </div>
+          <h4 class="text-sm font-extrabold text-slate-950">Boston Consulting Group (BCG)</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Estructuración de casos estratégicos, modelado financiero de estados de resultados (P&L), análisis de rentabilidad comercial y desbloqueo de cuellos de botella.
+          </p>
+        </div>
 
-          <!-- USP BRASIL -->
-          <div class="apple-glass-card apple-glass-hover p-4 rounded-2xl space-y-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
-              MBA USP ESALQ
+        <!-- UNIVERSIDADE DE SÃO PAULO -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-sky-100 text-sky-800 border border-sky-200">
+              MBA USP / ESALQ
             </span>
-            <h4 class="text-sm font-bold text-slate-900">Universidade de São Paulo</h4>
-            <p class="text-[11px] text-slate-600 leading-relaxed">
-              Storytelling Comercial & Estratégia de Produto cursado en la universidad #1 de Latinoamérica para negociación ejecutiva.
-            </p>
+            <span class="mono text-[10px] font-bold text-slate-400">Brasil</span>
           </div>
+          <h4 class="text-sm font-extrabold text-slate-950">Universidade de São Paulo (USP)</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Formación en <em>Storytelling Comercial & Estratégia de Produto</em> por la universidad #1 de Latinoamérica, aplicada a negociación B2B y presentaciones de directorio.
+          </p>
+        </div>
 
-          <!-- NAUFEST / HP -->
-          <div class="apple-glass-card apple-glass-hover p-4 rounded-2xl space-y-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-violet-100 text-violet-800 border border-violet-200">
-              1.ER PUESTO (10/10)
-            </span>
-            <h4 class="text-sm font-bold text-slate-900">HP & JA Americas</h4>
-            <p class="text-[11px] text-slate-600 leading-relaxed">
-              NauFest 2026 (#AIforImpact). Campeón regional con nota máxima en estructuración de soluciones con IA responsable para Pymes.
-            </p>
-          </div>
-
-          <!-- IBM QUANTUM -->
-          <div class="apple-glass-card apple-glass-hover p-4 rounded-2xl space-y-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-200">
-              CLASIFICADO OFICIAL
-            </span>
-            <h4 class="text-sm font-bold text-slate-900">IBM Quantum Hackathon</h4>
-            <p class="text-[11px] text-slate-600 leading-relaxed">
-              PUCP x UTEC. Líder de Nodux Quantum; arquitectura híbrida Q-LNS sobre Qiskit Aer con gap +2.94% frente al récord mundial.
-            </p>
-          </div>
-
-          <!-- INGENIA AUTOMATION -->
-          <div class="apple-glass-card apple-glass-hover p-4 rounded-2xl space-y-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-teal-100 text-teal-800 border border-teal-200">
-              BECA 100%
-            </span>
-            <h4 class="text-sm font-bold text-slate-900">IngenIA Consulting</h4>
-            <p class="text-[11px] text-slate-600 leading-relaxed">
-              Especialización práctica en automatización empresarial, arquitectura con Power Apps y flujos de trabajo en Power Automate.
-            </p>
-          </div>
-
-          <!-- NACIONES UNIDAS (UNSSC & UNFCCC) - CORREGIDO -->
-          <div class="apple-glass-card apple-glass-hover p-4 rounded-2xl space-y-2">
-            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-cyan-100 text-cyan-800 border border-cyan-200">
+        <!-- NACIONES UNIDAS (UNSSC & UNFCCC - SIN ERROR DE CAMBRIDGE) -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-cyan-100 text-cyan-800 border border-cyan-200">
               UNSSC & UNFCCC
             </span>
-            <h4 class="text-sm font-bold text-slate-900">Naciones Unidas</h4>
-            <p class="text-[11px] text-slate-600 leading-relaxed">
-              Certificación en Systems Change x Behavioural Science for Climate Action: diagnóstico sistémico y eliminación de resistencia conductual.
-            </p>
+            <span class="mono text-[10px] font-bold text-slate-400">ONU</span>
           </div>
-
+          <h4 class="text-sm font-extrabold text-slate-950">Naciones Unidas (System Staff College)</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Certificación oficial en <em>Systems Change x Behavioural Science</em> y marcos ESG: pensamiento sistémico y ciencias conductuales para eliminar resistencia al cambio operativo.
+          </p>
         </div>
-      </section>
 
-      <!-- TRAYECTORIA OPERATIVA & VALIDACIÓN DE TERRENO -->
-      <section class="md:col-span-3 apple-glass rounded-3xl p-7 sm:p-8 space-y-4">
-        <h3 class="text-xs font-bold tracking-wider uppercase text-slate-400">Trayectoria Operativa & Validación de Terreno</h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 pt-1">
-          <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 space-y-1">
-            <span class="text-xs font-bold text-slate-900">Caso de Éxito UTP Central</span>
-            <p class="text-[11px] text-slate-500 leading-relaxed">
-              Entrevistado central en el podcast oficial «Siempre Empleable» (+500,000 reproducciones multicanal acumuladas).
-            </p>
+        <!-- INGENIA CONSULTING -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2.5 py-0.5 rounded text-[10px] font-extrabold bg-teal-100 text-teal-800 border border-teal-200">
+              BECA 100% EXCELENCIA
+            </span>
+            <span class="mono text-[10px] font-bold text-slate-400">Low-Code</span>
           </div>
-
-          <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 space-y-1">
-            <span class="text-xs font-bold text-slate-900">AIESEC en Perú</span>
-            <p class="text-[11px] text-slate-500 leading-relaxed">
-              Chief Delegate en el Congreso Nacional y Strategy Member OGTa con 91.85% de cumplimiento de metas y alianzas globales.
-            </p>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 space-y-1">
-            <span class="text-xs font-bold text-slate-900">Promart Homecenter</span>
-            <p class="text-[11px] text-slate-500 leading-relaxed">
-              Premio «Estrella Promart» y Embajador de Espacios Seguros; control de mermas y disciplina logística en retail.
-            </p>
-          </div>
-
-          <div class="p-4 rounded-2xl bg-white/70 border border-slate-200/70 space-y-1">
-            <span class="text-xs font-bold text-slate-900">Auditoría SUNEDU</span>
-            <p class="text-[11px] text-slate-500 leading-relaxed">
-              Levantamiento de procesos en sede central validado formalmente mediante Carta N° 01901-2026-SUNEDU-SG-OACGD.
-            </p>
-          </div>
+          <h4 class="text-sm font-extrabold text-slate-950">IngenIA Consulting — Power Platform</h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Especialización práctica en automatización de procesos corporativos mediante <strong>Microsoft Power Apps y Power Automate</strong>.
+          </p>
         </div>
-      </section>
 
-    </div>
+      </div>
+    </section>
+
+    <!-- TRAYECTORIA DE CAMPO, DIPLOMACIA COMERCIAL & AUDITORÍA -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="ceramic-card p-5 rounded-2xl space-y-1.5">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-extrabold uppercase tracking-wider text-blue-600">Vocería Institucional</span>
+          <span class="mono text-xs font-bold text-emerald-600">+500K Vistas</span>
+        </div>
+        <h4 class="text-sm font-extrabold text-slate-950">Caso de Éxito UTP Central</h4>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Protagonista invitado del podcast oficial «Siempre Empleable» de la UTP, superando el medio millón de reproducciones orgánicas multicanal.
+        </p>
+      </div>
+
+      <div class="ceramic-card p-5 rounded-2xl space-y-1.5">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-extrabold uppercase tracking-wider text-indigo-600">Negociación Internacional</span>
+          <span class="mono text-xs font-bold text-indigo-600">91.85% KPI</span>
+        </div>
+        <h4 class="text-sm font-extrabold text-slate-950">AIESEC en Perú</h4>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          <em>Chief Delegate</em> en Congreso Nacional y <em>Strategy Member OGTa</em>; gestión de alianzas internacionales con comités de Reino Unido, India y Egipto.
+        </p>
+      </div>
+
+      <div class="ceramic-card p-5 rounded-2xl space-y-1.5">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-600">Operaciones en Piso</span>
+          <span class="mono text-xs font-bold text-amber-600">Reconocido</span>
+        </div>
+        <h4 class="text-sm font-extrabold text-slate-950">Promart Homecenter</h4>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Galardonado con el premio «Estrella Promart» y Embajador de Espacios Seguros; diagnóstico de necesidades en vivo y control logístico en retail.
+        </p>
+      </div>
+
+      <div class="ceramic-card p-5 rounded-2xl space-y-1.5">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-600">Ingeniería de Procesos</span>
+          <span class="mono text-xs font-bold text-slate-700">BPMN / SIPOC</span>
+        </div>
+        <h4 class="text-sm font-extrabold text-slate-950">Auditoría Técnica SUNEDU</h4>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Líder de levantamiento de procesos en sede central Surco (SIPOC, IDEF0, ASME y BPMN 2.0) validado con Carta N.° 01901-2026-SUNEDU.
+        </p>
+      </div>
+    </section>
 
     <!-- FOOTER EJECUTIVO -->
-    <footer class="apple-glass rounded-3xl p-8 text-center space-y-3">
-      <p class="text-sm font-semibold text-slate-800">
-        “El liderazgo comercial no es vender una función técnica aislada; es la disciplina de sentarse con el decisor, absorber su dolor operativo y estructurar un caso de negocio rentable e irrefutable.”
+    <footer class="titanium-card rounded-3xl p-8 text-center text-white space-y-4">
+      <p class="text-sm sm:text-base font-bold text-slate-100 max-w-3xl mx-auto leading-relaxed">
+        “En el mercado B2B nadie compra código por sí solo; las empresas compran certeza operativa, reducción de costos en su estado de resultados y un equipo capaz de responder cuando la operación apremia.”
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-2 text-xs text-slate-500">
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs text-slate-400 font-medium">
         <span>© 2026 Nicolás López Olivas</span>
         <span>•</span>
-        <span>CEO & Founder Nodux</span>
+        <a href="https://nx-profiler-nine.vercel.app" target="_blank" class="text-blue-400 hover:underline font-bold">Web Oficial Nodux</a>
         <span>•</span>
-        <span>Divulgador IEEE WIE</span>
+        <a href="https://kirorestqube.vercel.app" target="_blank" class="text-blue-400 hover:underline font-bold">Kiro RestQube</a>
         <span>•</span>
-        <span>LEAD UTP</span>
-        <span>•</span>
-        <span>Ponente CONEII 2027</span>
+        <a href="https://www.linkedin.com/in/nicolas-johny-lópez-olivas-182a71304/" target="_blank" class="text-blue-400 hover:underline font-bold">LinkedIn</a>
       </div>
     </footer>
 
   </main>
+
+  <!-- SCRIPT PARA PESTAÑAS INTERACTIVAS DE NODUX -->
+  <script>
+    function switchTab(tabName) {
+      const tabs = ['suites', 'portafolio', 'consultoria'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        const panel = document.getElementById('panel-' + t);
+        if (t === tabName) {
+          btn.className = 'px-4 py-2 rounded-xl text-xs font-bold transition-all bg-blue-600 text-white shadow-md';
+          panel.classList.remove('hidden');
+          panel.classList.add('grid');
+        } else {
+          btn.className = 'px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-800/90 text-slate-300 hover:bg-slate-700';
+          panel.classList.add('hidden');
+          panel.classList.remove('grid');
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
